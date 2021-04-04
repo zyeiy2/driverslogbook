@@ -21,7 +21,7 @@ BEGIN
 
     Merge [dbo].[dayinoffice] as t
 	Using (Select @office_date,@employee , @datetime) as s (office_date,employee,insert_time) 
-	On (t.[employee] = s.employee and t.[office_date] = s.[insert_time])
+	On (t.[employee] = s.employee and t.[office_date] = s.[office_date])
 	WHEN MATCHED THEN 
 		UPDATE SET [insert_time] = s.[insert_time]
 	WHEN NOT MATCHED THEN
@@ -31,5 +31,3 @@ BEGIN
 	
 END
 GO
-
-
