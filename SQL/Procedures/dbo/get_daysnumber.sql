@@ -16,7 +16,15 @@ CREATE PROCEDURE [dbo].[getdaysnumber]
 AS
 BEGIN
  
+  IF @diff = 0 
+
   SELECT count(1) as 'Numberofdays'
+  FROM [dbo].[dayinoffice]
+  where [employee] = @employee
+  and [office_date] >= DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()) - @diff, 0)	-- First day of previous month 
+
+ELSE
+SELECT count(1) as 'Numberofdays'
   FROM [dbo].[dayinoffice]
   where [employee] = @employee
   and [office_date] >= DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()) - @diff, 0)	-- First day of previous month

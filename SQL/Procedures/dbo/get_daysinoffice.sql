@@ -17,6 +17,8 @@ CREATE PROCEDURE [dbo].[getdaysinofficeall]
 AS
 BEGIN
 
+IF @diff = 0 
+
   SELECT  [office_date]
       ,[employee]
       ,[insert_time]
@@ -24,9 +26,28 @@ BEGIN
   FROM [dbo].[dayinoffice]
   where employee = @employee
   and [office_date] >= DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()) - @diff, 0)	-- First day of previous month
-  and [office_date] <= DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()),- @diff)		-- Last Day of previous month
-  
   order by office_date asc
+
+ELSE
+ SELECT  [office_date]
+      ,[employee]
+      ,[insert_time]
+	  ,FORMAT ( [office_date], 'D', @format ) AS 'atOffice'  
+  FROM [dbo].[dayinoffice]
+  where employee = @employee
+  and [office_date] >= DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()) - @diff, 0)	-- First day of previous month
+  and [office_date] <= DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()),- @diff)		-- Last Day of previous month  
+  order by office_date asc
+
+
 Return 
 END
 GO
+
+
+
+
+
+
+
+
