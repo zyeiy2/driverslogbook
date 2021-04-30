@@ -14,7 +14,7 @@ If you need to track your rides to the company and report it you can use this ha
 
 ## Power Automate Setup: 
 1. Open invitation E-Mails
-2. Run  "Set License Plate" and enter your License Plate 
+2. Run  "Set License Plate" and enter your License Plate. If you have to change your license plate you can rerun this. The license plate will be updated.
 3. Run  "Day in office" -> No input required
 4. Run "Manual Send Mail" to send Mail with details to your mail address. Input: 0 = current month 1= last month it's relative to the current month.
 
